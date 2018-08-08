@@ -14,15 +14,16 @@ public class MemberDAO {
 	
 	//insert
 	public int insert(MemberVO member) {
-		String sql = "INSERT INTO member VALUES(?,?,?,?,?,false)";
+		String sql = "INSERT INTO member VALUES(?,?,?,?,?,?,afalse)";
 		Connection conn = DBManager.getConnection();
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, member.getId());
 			ps.setString(2, member.getPassword());
 			ps.setString(3, member.getUsername());
-			ps.setString(4, member.getEmail());
-			ps.setString(5, member.getSalt());
+			ps.setString(4, member.getRoadFullAddr());
+			ps.setString(5, member.getEmail());
+			ps.setString(6, member.getSalt());
 			ps.executeUpdate();
 			return 1;
 		} catch (Exception e) {
