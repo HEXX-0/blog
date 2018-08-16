@@ -15,13 +15,13 @@ import com.cos.util.SHA256;
 import com.cos.util.Script;
 
 public class MemberLogoutAction implements Action {
-	private static String naming = "MemberLoginAction : ";
+	private static String naming = "MemberLogoutAction : ";
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "/Blog/index.jsp";
 		HttpSession session = request.getSession();
-		session.setAttribute("id", null);
+		session.invalidate();
 		Script.moving(response, "로그아웃 되셨습니다.", url);
 
 	}

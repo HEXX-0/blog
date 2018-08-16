@@ -81,14 +81,14 @@ function jusoCallBack(roadFullAddr){
         			</div>
         			<div class="form-gruop">
         				<label class="form-control-label">E-mail</label>
-        				<input class="form-control form-control-lg" type="email" name="email" maxlength="20" required>
+        				<input class="form-control form-control-lg" type="email" name="email" maxlength="50" required>
         			</div>
         			<div class="border-top pt-3">
         				<small class="text-muted">
         					joined before?<a class="ml-2" href="<%=request.getContextPath()%>/member/loginForm.jsp">Login</a>
         				</small>
         			</div>
-        			<button class="btn btn-outline-primary" type="submit">Sign in</button>
+        			<button class="btn btn-outline-primary" type="submit">Create an Account</button>
         		</fieldset>
         	</form>
         </div>

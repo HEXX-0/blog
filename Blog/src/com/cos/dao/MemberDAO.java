@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 
 import com.cos.dto.MemberVO;
 import com.cos.util.DBManager;
-import com.mysql.fabric.xmlrpc.base.Member;
+
 
 public class MemberDAO {
 	private PreparedStatement ps;
@@ -14,7 +14,7 @@ public class MemberDAO {
 	
 	//insert
 	public int insert(MemberVO member) {
-		String sql = "INSERT INTO member VALUES(?,?,?,?,?,?,afalse)";
+		String sql = "INSERT INTO member VALUES(?,?,?,?,?,?,false)";
 		Connection conn = DBManager.getConnection();
 		try {
 			ps = conn.prepareStatement(sql);
@@ -133,5 +133,53 @@ public class MemberDAO {
 		}
 		return -1;
 	}
+	//info load
+		public MemberVO select(String id) {
+			String sql = "SELECT * FROM member WHERE id = ?";
+			Connection conn  = DBManager.getConnection();
+			try {
+				ps =  conn.prepareStatement(sql);
+				ps.setString(1, id);
+				rs = ps.executeQuery();
+				if(rs.next()) {
+					MemberVO member = new MemberVO();
+					member.setId(id);
+					member.setUsername(rs.getString("username"));
+					member.setRoadFullAddr(rs.getString("roadFullAddr"));
+					member.setPassword(rs.getString("password"));
+					member.setEmail(rs.getString("email"));
+					member.setEmailcheck(rs.getBoolean("emailcheck"));
+					return member;
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				DBManager.close(conn, ps, rs);
+			}
+			return null;
+		}
+		
+		//modify info
+		public int update(MemberVO member) {
+			String sql = "UPDATE member SET password = ?, roadFullAddr = ?, email = ?, salt = ?, emailcheck = ? WHERE id = ?";
+			Connection conn = DBManager.getConnection();
+			
+			try {
+				ps = conn.prepareStatement(sql);
+				ps.setString(1, member.getPassword());
+				ps.setString(2, member.getRoadFullAddr());
+				ps.setString(3, member.getEmail());
+				ps.setString(4, member.getSalt());
+				ps.setBoolean(5, member.isEmailcheck());
+				ps.setString(6, member.getId());
+				ps.executeUpdate();
+				return 1;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				DBManager.close(conn, ps);
+			}
+			return -1; //error
+		}
 	
 }
