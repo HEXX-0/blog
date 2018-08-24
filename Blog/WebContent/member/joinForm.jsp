@@ -42,6 +42,7 @@ function jusoCallBack(roadFullAddr){
 <!-- Bootstrap core JavaScript -->
 <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/bootstrap.bundle.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/validation.js"></script>
 
 </head>
 
@@ -55,7 +56,7 @@ function jusoCallBack(roadFullAddr){
       <!-- Blog Entries Column -->
       <div class="col-md-8">
         <div class="content-section">
-        	<form name="form" id="form" method="POST" action="<%=request.getContextPath()%>/Member?cmd=member_join">
+        	<form name="form" id="form" method="POST" action="<%=request.getContextPath()%>/Member?cmd=member_join" onsubmit="return hangeulCheck(this)">
         		<fieldset class="form-gruop">
         			<legend class="border-bottom mb-4">Join</legend>
         			<div class="form-gruop">

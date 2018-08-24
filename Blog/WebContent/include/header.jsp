@@ -10,7 +10,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <div class="navbar-nav">
-          <a class="nav-item active nav-link mr-auto" href="#">Home
+          <a class="nav-item active nav-link mr-auto" href="<%=request.getContextPath()%>/index.jsp">Home
             <span class="sr-only">(current)</span>
           </a>
           <a class="nav-item nav-link" href="#">About</a>

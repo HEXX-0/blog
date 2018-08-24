@@ -8,7 +8,7 @@ import com.cos.dto.MemberVO;
 import com.cos.util.DBManager;
 
 
-public class MemberDAO {
+public class MemberDAO2 {
 	private PreparedStatement ps;
 	private ResultSet rs;
 	
@@ -161,7 +161,7 @@ public class MemberDAO {
 		
 		//modify info
 		public int update(MemberVO member) {
-			String sql = "UPDATE member SET password = ?, roadFullAddr = ?, email = ? WHERE id = ?";
+			String sql = "UPDATE member SET password = ?, roadFullAddr = ?, email = ?, salt = ?, emailcheck = ? WHERE id = ?";
 			Connection conn = DBManager.getConnection();
 			
 			try {
@@ -169,7 +169,9 @@ public class MemberDAO {
 				ps.setString(1, member.getPassword());
 				ps.setString(2, member.getRoadFullAddr());
 				ps.setString(3, member.getEmail());
-				ps.setString(4, member.getId());
+				ps.setString(4, member.getSalt());
+				ps.setBoolean(5, member.isEmailcheck());
+				ps.setString(6, member.getId());
 				ps.executeUpdate();
 				return 1;
 			} catch (Exception e) {

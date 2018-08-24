@@ -34,6 +34,7 @@
 <!-- Bootstrap core JavaScript -->
 <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/bootstrap.bundle.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/validation.js"></script>
 
 </head>
 
@@ -47,7 +48,7 @@
       <!-- Blog Entries Column -->
       <div class="col-md-8">
         <div class="content-section">
-        	<form method="POST" action="<%=request.getContextPath()%>/Member?cmd=member_login">
+        	<form method="POST" action="<%=request.getContextPath()%>/Member?cmd=member_login" onsubmit="return hangeulCheck(this)">
         		<fieldset class="form-gruop">
         			<legend class="border-bottom mb-4"></legend>
         			<div class="form-gruop"> 
